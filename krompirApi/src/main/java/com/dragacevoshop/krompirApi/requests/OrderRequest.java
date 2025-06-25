@@ -13,5 +13,9 @@ import java.util.List;
 public class OrderRequest {
     private String customerName;
     private String customerEmail;
+    private String address;
+    private String phone;
+    private String city;
+    private String comment;
     private List<OrderItemRequest> items;
 }
