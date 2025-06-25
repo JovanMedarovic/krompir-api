@@ -23,8 +23,8 @@ public class ProductController {
     }
 
     @PostMapping("/bulk")
-    public ResponseEntity<List<Product>> bulkAddProducts(@RequestBody List<Product> products) {
-        return ResponseEntity.ok(productService.addProducts(products));
+    public ResponseEntity<List<Product>> bulkAddProducts() {
+        return ResponseEntity.ok(productService.addProducts());
     }
 
     @GetMapping

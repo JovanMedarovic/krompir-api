@@ -22,9 +22,7 @@ public class Order {
     private Long id;
 
     @Column(nullable = false)
-    private String customerFirstName;
-    @Column(nullable = false)
-    private String customerLastName;
+    private String customerName;
     @Column(nullable = false)
     private String address;
     @Column(nullable = false)
