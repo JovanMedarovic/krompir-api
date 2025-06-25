@@ -22,12 +22,25 @@ public class Order {
     private Long id;
 
     @Column(nullable = false)
-    private String customerName;
-
+    private String customerFirstName;
+    @Column(nullable = false)
+    private String customerLastName;
+    @Column(nullable = false)
+    private String address;
+    @Column(nullable = false)
+    private String phone;
+    @Column(nullable = false)
+    private String city;
+    @Column(nullable = false)
+    private String comment;
     @Column(nullable = false)
     private String customerEmail;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<OrderItem> items;
+
+    /*TODO:
+    Add
+    */
 }
