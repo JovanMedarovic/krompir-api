@@ -2,6 +2,7 @@ package com.dragacevoshop.krompirApi.services;
 
 import com.dragacevoshop.krompirApi.models.Product;
 import com.dragacevoshop.krompirApi.repositories.ProductRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -68,35 +69,9 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public void importProductsFromUrl(String fileUrl) {
-        List<Product> products = new ArrayList<>();
-        try {
-            URL url = new URL(fileUrl);
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    // Skip empty lines
-                    if (line.trim().isEmpty()) continue;
-
-                    String[] parts = line.split(",", -1);
-                    if (parts.length != 5) {
-                        System.out.println("Skipping invalid line: " + line);
-                        continue;
-                    }
-
-                    Product product = new Product();
-                    product.setName(parts[0].trim());
-                    product.setDescription(parts[1].trim());
-                    product.setImageUrl(parts[2].trim());
-                    product.setPrice(Float.parseFloat(parts[3].trim()));
-                    product.setUnit(parts[4].trim());
-
-                    products.add(product);
-                }
-            }
-            productRepository.saveAll(products);
-        } catch (Exception e) {
-            e.printStackTrace(); // You can use a logger here
-        }
+    @Scheduled(cron = "0 0 0 * * *")
+    public void scheduledAddProducts() {
+        System.out.println("Scheduled addProducts triggered...");
+        addProducts();
     }
 }
