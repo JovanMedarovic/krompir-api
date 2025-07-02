@@ -1,5 +1,5 @@
-# Step 1: Build the app with Maven
-FROM maven:3.9.4-eclipse-temurin-17 as build
+# Step 1: Build the app with Maven using Java 21
+FROM maven:3.9.6-eclipse-temurin-21 as build
 
 WORKDIR /app
 
@@ -15,8 +15,8 @@ COPY src ./src
 # Build the jar (skip tests for faster build; remove -DskipTests to run tests)
 RUN mvn clean package -DskipTests
 
-# Step 2: Run the app
-FROM eclipse-temurin:17-jdk-alpine
+# Step 2: Run the app with Java 21
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 
