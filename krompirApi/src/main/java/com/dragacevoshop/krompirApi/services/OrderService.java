@@ -53,6 +53,7 @@ public class OrderService {
         
         String formattedOrder = OrderFormatter.formatOrder(order);
         emailService.sendOrderSummary("ovdebeli@gmail.com", "New Order Received", formattedOrder);
+        emailService.sendOrderSummary(order.getCustomerEmail(), "New Order Received", "Napavili ste porudzbinu:\n\n" + formattedOrder);
 
         return orderRepository.save(order);
     }

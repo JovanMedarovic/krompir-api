@@ -20,9 +20,9 @@ public class OrderFormatter {
         System.out.println("Formatted date: " + formattedDate);
 
         sb.append("Kupac:   ").append(order.getCustomerName()).append("\n");
-        sb.append("Grad:    ").append(order.getCustomerEmail()).append("\n");
-        sb.append("Adresa:  ").append(order.getCustomerEmail()).append("\n");
-        sb.append("Telefon: ").append(order.getCustomerEmail()).append("\n");
+        sb.append("Grad:    ").append(order.getCity()).append("\n");
+        sb.append("Adresa:  ").append(order.getAddress()).append("\n");
+        sb.append("Telefon: ").append(order.getPhone()).append("\n");
         sb.append("Email:   ").append(order.getCustomerEmail()).append("\n");
         sb.append("Datum:   ").append(formattedDate).append("\n");
         sb.append("Porudžbina:\n");
@@ -45,6 +45,10 @@ public class OrderFormatter {
         }
 
         sb.append("Ukupno: ").append(df.format(grandTotal));
+
+        if (order.getComment() != null || !order.getComment().isEmpty()) {
+            sb.append("\nNapomena: ").append(order.getComment());
+        }
         return sb.toString();
     }
 }
