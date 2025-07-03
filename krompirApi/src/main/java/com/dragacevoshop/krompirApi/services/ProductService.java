@@ -53,6 +53,8 @@ public class ProductService {
                     products.add(product);
                 }
             }
+
+            productRepository.deleteAll();
             return productRepository.saveAll(products);
         } catch (Exception e) {
             e.printStackTrace(); // You can use a logger here
